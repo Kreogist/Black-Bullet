@@ -15,18 +15,18 @@ class KNLibDatabase : public QObject
     Q_OBJECT
 public:
     explicit KNLibDatabase(QObject *parent = 0);
+    void append(const QJsonValue &value);
     QJsonValue at(int i) const;
-    QJsonObject row(int i) const;
-    void setDatabase(const QString &filePath);
+    QJsonParseError error() const;
+    void flush();
     virtual void load();
     void replace(int i, const QJsonValue &value);
+    QJsonObject row(int i) const;
     void setBatchCount(int batch);
-    void append(const QJsonValue &value);
-    QJsonValue takeAt(int i);
+    void setDatabase(const QString &filePath);
     void removeAt(int i);
     int size() const;
-    void flush();
-    QJsonParseError error() const;
+    QJsonValue takeAt(int i);
 
 signals:
 
